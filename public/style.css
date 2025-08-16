@@ -1,19 +1,154 @@
+/* Base Styles */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f5f7fa;
     margin: 0;
     padding: 20px;
     transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
 }
 
 .container {
-    max-width: 600px;
+    width: 100%;
+    max-width: 800px;
     margin: 0 auto;
     background: white;
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+}
+
+/* Auth Section Styles */
+.auth-section {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.auth-form {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.auth-form h2 {
+    margin-top: 0;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.auth-input:focus {
+    border-color: #3a86ff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(58, 134, 255, 0.2);
+}
+
+.auth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.auth-btn {
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.auth-btn:hover {
+    transform: translateY(-1px);
+}
+
+#loginBtn {
+    background: #3a86ff;
+    color: white;
+}
+
+#loginBtn:hover {
+    background: #2667cc;
+}
+
+#signupBtn {
+    background: #28a745;
+    color: white;
+}
+
+#signupBtn:hover {
+    background: #218838;
+}
+
+.google-btn {
+    background: #4285F4;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.google-btn:hover {
+    background: #357ae8;
+}
+
+/* User Info Styles */
+.user-info {
+    margin-top: 20px;
+    text-align: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.user-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.user-email {
+    font-weight: bold;
+    color: #333;
+}
+
+.logout-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+}
+
+/* To-Do List Styles */
+#appContent {
+    display: none; /* Initially hidden until auth */
 }
 
 h1 {
@@ -46,6 +181,12 @@ h1 {
     transition: all 0.3s ease;
 }
 
+#taskInput:focus, #categorySelect:focus {
+    border-color: #3a86ff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(58, 134, 255, 0.2);
+}
+
 button {
     padding: 12px 18px;
     background: #3a86ff;
@@ -71,6 +212,10 @@ button:hover {
 
 #themeToggle:hover {
     background: #5a6268;
+}
+
+#addTaskBtn {
+    min-width: 80px;
 }
 
 ul {
@@ -113,6 +258,7 @@ li.completed {
     align-items: center;
     gap: 10px;
     flex: 1;
+    overflow: hidden;
 }
 
 .task-actions {
@@ -127,12 +273,14 @@ li.completed {
     font-weight: 500;
     color: white;
     background-color: #6c757d;
+    white-space: nowrap;
 }
 
 .complete-btn, .delete-btn {
     padding: 6px 12px;
     border-radius: 4px;
     font-size: 14px;
+    min-width: 70px;
 }
 
 .complete-btn {
@@ -163,23 +311,27 @@ body.dark-mode {
     color: #e0e0e0;
 }
 
-.dark-mode .container {
+.dark-mode .container,
+.dark-mode .auth-form {
     background-color: #1e1e1e;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-.dark-mode h1 {
+.dark-mode h1,
+.dark-mode .auth-form h2 {
     color: #f8f9fa;
 }
 
 .dark-mode #taskInput,
-.dark-mode #categorySelect {
+.dark-mode #categorySelect,
+.dark-mode .auth-input {
     background-color: #2d2d2d;
     color: #f8f9fa;
     border-color: #444;
 }
 
-.dark-mode li {
+.dark-mode li,
+.dark-mode .user-info {
     background-color: #2d2d2d;
     color: #e0e0e0;
 }
@@ -187,6 +339,10 @@ body.dark-mode {
 .dark-mode li.completed {
     color: #aaa;
     background-color: #252525;
+}
+
+.dark-mode .user-email {
+    color: #e0e0e0;
 }
 
 /* Category Colors */
@@ -219,7 +375,7 @@ body.dark-mode {
 }
 
 /* Responsive adjustments */
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     .container {
         padding: 15px;
     }
@@ -228,7 +384,22 @@ body.dark-mode {
         flex-direction: column;
     }
     
-    button {
+    button, .auth-btn {
         width: 100%;
+    }
+    
+    .user-details {
+        flex-direction: column;
+    }
+    
+    li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .task-actions {
+        width: 100%;
+        justify-content: flex-end;
     }
 }
