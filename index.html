@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple To-Do List</title>
+    <title>To-Do List with Firebase</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <div id="appContent">
@@ -27,6 +29,26 @@
             <ul id="taskList"></ul>
         </div>
     </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script>
+        // Your Firebase config (replace with your actual config)
+        const firebaseConfig = {
+            apiKey: "AIzaSyAP8w7d1n8LykXYyBHhDJh20VBIt3gcmC4",
+            authDomain: "todo-list-app-779dd.firebaseapp.com",
+            projectId: "todo-list-app-779dd",
+            storageBucket: "todo-list-app-779dd.firebasestorage.app",
+            messagingSenderId: "488340646334",
+            appId: "1:488340646334:web:1d01abb0aca2c3a668f1ef"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
     <script src="script.js"></script>
 </body>
+
 </html>
